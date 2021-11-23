@@ -1,0 +1,1 @@
+web: java $JAVA_TOOL_OPTIONS -jar target/spring-boot-starter-data-search-jpa-demo-1.0.0-SNAPSHOT.jar --spring.profiles.active=heroku
