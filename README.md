@@ -6,7 +6,7 @@ This is a demo project for the library [spring-boot-starter-data-search-jpa](htt
 This demo is deployed on [heroku](https://www.heroku.com/) and sleeps after 30 minutes of inactivity. 
 Your first request could be slow if it occurs when the application is sleeping. In this case, please retry a few seconds after your first request.
 
-[https://data-search-jpa-demo.herokuapp.com/customers](https://data-search-jpa-demo.herokuapp.com/customers?search=birthDate%20%3E:%201988-01-01%20and%20(emailAddress%20:%20*gmail.com%20or%20emailAddress:%20*outlook.com)&page=0&size=100&sort=coins,desc)
+[https://data-search-jpa-demo.herokuapp.com/customers](https://data-search-jpa-demo.herokuapp.com/customers?search=birthDate%20%3E:%201988-01-01%20and%20(email%20:%20*gmail.com%20or%20email:%20*outlook.com)&page=0&size=100&sort=name,desc)
 
 ### Requirements
 **Java version** 11 or higher (_If java 8 support is needed, please vote for [this issue](https://github.com/commerce-io/spring-boot-starter-data-search/issues/3)_)
@@ -33,27 +33,25 @@ demo.data-size=10000
     "id": "13e3afc8-0832-41c4-bb12-812e516d0980",
     "ref": 1966,
     "title": "Ms.",
-    "firstName": "Angelique",
-    "lastName": "VonRueden",
-    "emailAddress": "angelique.vonrueden@gmail.com",
-    "emailAddressVerified": true,
+    "name": "Angelique",
+    "surname": "VonRueden",
+    "email": "angelique.vonrueden@gmail.com",
+    "emailVerified": true,
     "birthDate": "1989-04-14",
     "addresses": [
         {
             "id": "011992a8-dbf1-4398-9aef-5d4563df5c0c",
-            "streetAddress": "942 Charlette Forges",
-            "postalCode": "98527-5724",
+            "street": "942 Charlette Forges",
+            "zipCode": "98527-5724",
             "city": "Stiedemannberg",
-            "country": "Curaçao",
-            "countryCode": "CW"
+            "country": "CW"
         },
         {
             "id": "10a09a89-2359-457c-b50a-308dda9d7add",
-            "streetAddress": "400 Schamberger Lodge",
-            "postalCode": "22998",
+            "street": "400 Schamberger Lodge",
+            "zipCode": "22998",
             "city": "Andreshire",
-            "country": "China",
-            "countryCode": "CN"
+            "country": "CN"
         }
     ],
     "coins": 44.801514,
@@ -65,5 +63,5 @@ demo.data-size=10000
 
 By default, with  [data-search](https://github.com/commerce-io/spring-boot-starter-data-search), all customer fields become searchable. 
 ```cURL
-curl -L -X  GET 'http://localhost:8080/customers?search=birthDate >: 1988-01-01 and (emailAddress : *gmail.com or emailAddress: *protonmail.com)&page=0&size=10&sort=coins,desc'
+curl -L -X  GET 'http://localhost:8080/customers?search=birthDate >: 1988-01-01 and (email : *gmail.com or email: *protonmail.com)&page=0&size=10&sort=name,desc'
 ```

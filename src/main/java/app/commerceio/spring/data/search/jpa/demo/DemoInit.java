@@ -1,8 +1,8 @@
 package app.commerceio.spring.data.search.jpa.demo;
 
-import app.commerceio.spring.data.search.jpa.demo.customer.Customer;
+import app.commerceio.spring.data.search.jpa.demo.customer.data.CustomerEntity;
 import app.commerceio.spring.data.search.jpa.demo.customer.CustomerMapper;
-import app.commerceio.spring.data.search.jpa.demo.customer.CustomerRepository;
+import app.commerceio.spring.data.search.jpa.demo.customer.data.CustomerEntityRepository;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,24 +20,24 @@ public class DemoInit implements ApplicationListener<ApplicationReadyEvent> {
 
     private final CustomerMapper customerMapper;
     private final DemoProperties demoProperties;
-    private final CustomerRepository customerRepository;
+    private final CustomerEntityRepository customerRepository;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         if (demoProperties.isDataInit()) {
             Faker faker = new Faker();
             customerRepository.deleteAll();
-            List<Customer> customers = new ArrayList<>();
+            List<CustomerEntity> customers = new ArrayList<>();
             for (long ref = 1; ref <= demoProperties.getDataSize(); ref++) {
-                Customer customer = customerDocument(ref, faker);
+                CustomerEntity customer = customerDocument(ref, faker);
                 customers.add(customer);
             }
             customerRepository.saveAll(customers);
         }
     }
 
-    private Customer customerDocument(long ref, Faker faker) {
-        return customerMapper.customer(ref, faker);
+    private CustomerEntity customerDocument(long ref, Faker faker) {
+        return customerMapper.customerEntity(ref, faker);
     }
 
 }
