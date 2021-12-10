@@ -1,5 +1,6 @@
 package app.commerceio.spring.data.search.jpa.demo;
 
+import app.commerceio.spring.data.search.LowerCaseValueMapping;
 import app.commerceio.spring.data.search.Mapper;
 import app.commerceio.spring.data.search.jpa.demo.customer.Customer;
 import app.commerceio.spring.data.search.jpa.demo.customer.CustomerMapper;
@@ -47,7 +48,7 @@ public class DemoController {
         Mapper mapper = Mapper.mapper()
                 .mapping("name", "firstName")
                 .mapping("surname", "lastName")
-                .mapping("email", "emailAddress")
+                .mapping("email", "emailAddress", new LowerCaseValueMapping())
                 .mapping("emailVerified", "emailAddressVerified")
                 .mapping("addresses", "addressEntities", addressMapper)
                 .build();
